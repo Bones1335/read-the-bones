@@ -1,3 +1,7 @@
+:root {
+    --hdr-ftr-text-color: #fff;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,7 +10,7 @@ body {
 
 header {
     background-color: #333;
-    color: #fff;
+    color: var(--hdr-ftr-text-color);
     text-align: center;
     padding: 1em;
 }
@@ -21,13 +25,17 @@ nav li {
     margin-right: 15px;
 }
 
+nav a {
+    text-decoration: none;
+    color: var(--hdr-ftr-text-color);
+}
 main {
     padding: 20px;
 }
 
 footer {
     background-color: #333;
-    color: #fff;
+    color: var(--hdr-ftr-text-color);
     text-align: center;
     padding: 1em;
     position: fixed;
