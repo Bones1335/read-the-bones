@@ -1,5 +1,6 @@
 :root {
     --hdr-ftr-text-color: #fff;
+    --hdr-ftr-background-color: #333;
 }
 
 body {
@@ -8,11 +9,30 @@ body {
     padding: 0;
 }
 
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
 header {
-    background-color: #333;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-areas: "logo . nav nav nav";
+    background-color: var(--hdr-ftr-background-color);
     color: var(--hdr-ftr-text-color);
     text-align: center;
     padding: 1em;
+}
+
+header h1 {
+    grid-area: logo;
+}
+
+nav {
+    display: flex;
+    grid-area: nav;
+    justify-content: space-around;
+    align-items: center;
 }
 
 nav ul {
@@ -29,16 +49,61 @@ nav a {
     text-decoration: none;
     color: var(--hdr-ftr-text-color);
 }
+
 main {
     padding: 20px;
+    width: auto;
+}
+
+#blog-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas: 
+        "latest latest latest popular popular"
+        "latest latest latest popular popular"
+        "recent recent recent recent recent";
+}
+
+#latest-post {
+    grid-area: latest;
+    display: flex;
+    flex-direction: column;
+}
+
+#latest-post img {
+    align-self: center;
+}
+
+#popular-posts {
+    grid-area: popular;
+}
+
+#popular-posts ul {
+    list-style-type: none;
+}
+
+#popular-posts li {
+    display: flex;
+    justify-content: space-between;
+}
+
+#recent-posts {
+    grid-area: recent;
+}
+
+#recent-posts ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
 }
 
 footer {
-    background-color: #333;
+    background-color: var(--hdr-ftr-background-color);
     color: var(--hdr-ftr-text-color);
     text-align: center;
-    padding: 1em;
-    position: fixed;
+    position: absolute;
     bottom: 0;
     width: 100%;
+    height: 2.5rem;
 }
