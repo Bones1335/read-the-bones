@@ -98,6 +98,27 @@ main {
     justify-content: space-between;
 }
 
+#blog-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.blog-post-card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 50px;
+    align-items: center;
+}
+
+.date-tags {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
 footer {
     background-color: var(--hdr-ftr-background-color);
     color: var(--hdr-ftr-text-color);
