@@ -16,7 +16,8 @@ func main() {
 
 	mux.Handle("/static/", fsHandler)
 
-	mux.HandleFunc("GET /app/", handlerGetIndex)
+	mux.HandleFunc("/", handlerGetIndex)
+	mux.HandleFunc("/blog", handlerBlog)
 
 	server := &http.Server{
 		Addr:    ":" + port,
@@ -39,6 +40,20 @@ func handlerGetIndex(w http.ResponseWriter, r *http.Request) {
 	err = temp.Execute(w, text)
 	if err != nil {
 		fmt.Printf("problem executing template data: %v", err)
+		return
+	}
+}
+
+func handlerBlog(w http.ResponseWriter, r *http.Request) {
+	temp, err := template.ParseFiles("templates/layout.html", "templates/blog.html")
+	if err != nil {
+		fmt.Printf("error parsing blog template: %v", err)
+		return
+	}
+
+	err = temp.Execute(w, "")
+	if err != nil {
+		fmt.Printf("error executing template data: %v", err)
 		return
 	}
 }
