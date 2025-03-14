@@ -8,13 +8,13 @@ import (
 )
 
 func main() {
-	const filepathRoot = "."
+	const filepathRoot = "./static"
 	const port = "8080"
 
 	mux := http.NewServeMux()
-	fsHandler := http.StripPrefix("/app", http.FileServer(http.Dir(filepathRoot)))
+	fsHandler := http.StripPrefix("/static", http.FileServer(http.Dir(filepathRoot)))
 
-	mux.Handle("/app/", fsHandler)
+	mux.Handle("/static/", fsHandler)
 
 	mux.HandleFunc("GET /app/", handlerGetIndex)
 
@@ -30,7 +30,7 @@ func main() {
 func handlerGetIndex(w http.ResponseWriter, r *http.Request) {
 	text := "Hello internet! Welcome to Read the Bones :)"
 
-	temp, err := template.ParseFiles("templates/index.html")
+	temp, err := template.ParseFiles("templates/layout.html", "templates/index.html")
 	if err != nil {
 		fmt.Printf("error parsing html templates: %v", err)
 		return
