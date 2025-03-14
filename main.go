@@ -18,6 +18,9 @@ func main() {
 
 	mux.HandleFunc("/", handlerGetIndex)
 	mux.HandleFunc("/blog", handlerBlog)
+	mux.HandleFunc("/projects", handlerProjects)
+	mux.HandleFunc("/about", handlerAbout)
+	mux.HandleFunc("/contact", handlerContact)
 
 	server := &http.Server{
 		Addr:    ":" + port,
@@ -54,6 +57,48 @@ func handlerBlog(w http.ResponseWriter, r *http.Request) {
 	err = temp.Execute(w, "")
 	if err != nil {
 		fmt.Printf("error executing template data: %v", err)
+		return
+	}
+}
+
+func handlerProjects(w http.ResponseWriter, r *http.Request) {
+	temp, err := template.ParseFiles("templates/layout.html", "templates/projects.html")
+	if err != nil {
+		fmt.Printf("error parsing projects template: %v", err)
+		return
+	}
+
+	err = temp.Execute(w, "")
+	if err != nil {
+		fmt.Printf("error executing projects template data: %v", err)
+		return
+	}
+}
+
+func handlerAbout(w http.ResponseWriter, r *http.Request) {
+	temp, err := template.ParseFiles("templates/layout.html", "templates/about.html")
+	if err != nil {
+		fmt.Printf("error parsing about template: %v", err)
+		return
+	}
+
+	err = temp.Execute(w, "")
+	if err != nil {
+		fmt.Printf("error executing about template data: %v", err)
+		return
+	}
+}
+
+func handlerContact(w http.ResponseWriter, r *http.Request) {
+	temp, err := template.ParseFiles("templates/layout.html", "templates/contact.html")
+	if err != nil {
+		fmt.Printf("error parsing contact template: %v", err)
+		return
+	}
+
+	err = temp.Execute(w, "")
+	if err != nil {
+		fmt.Printf("error executing contact template data: %v", err)
 		return
 	}
 }
