@@ -4,7 +4,10 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"text/template"
+
+	"github.com/gomarkdown/markdown"
 )
 
 func main() {
@@ -31,6 +34,18 @@ func main() {
 	log.Fatal(server.ListenAndServe())
 }
 
+func mdToHTML() string {
+	mdFile, err := os.ReadFile("content/connemara_Mathieu_Nicolas.md")
+	if err != nil {
+		fmt.Printf("error reading markdown file: %v", err)
+		return ""
+	}
+
+	html := markdown.ToHTML(mdFile, nil, nil)
+
+	return string(html)
+}
+
 func handlerGetIndex(w http.ResponseWriter, r *http.Request) {
 	text := "Hello internet! Welcome to Read the Bones :)"
 
@@ -48,13 +63,15 @@ func handlerGetIndex(w http.ResponseWriter, r *http.Request) {
 }
 
 func handlerBlog(w http.ResponseWriter, r *http.Request) {
+	md := mdToHTML()
+
 	temp, err := template.ParseFiles("templates/layout.html", "templates/blog.html")
 	if err != nil {
 		fmt.Printf("error parsing blog template: %v", err)
 		return
 	}
 
-	err = temp.Execute(w, "")
+	err = temp.Execute(w, md)
 	if err != nil {
 		fmt.Printf("error executing template data: %v", err)
 		return
@@ -96,7 +113,7 @@ func handlerContact(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = temp.Execute(w, "")
+	err = temp.Execute(w, nil)
 	if err != nil {
 		fmt.Printf("error executing contact template data: %v", err)
 		return
