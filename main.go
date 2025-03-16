@@ -16,6 +16,7 @@ func main() {
 
 	mux.HandleFunc("/", handlerGetIndex)
 	mux.HandleFunc("/blog", handlerBlog)
+	mux.HandleFunc("/blog/{postTitle}", handlerGetPost)
 	mux.HandleFunc("/projects", handlerProjects)
 	mux.HandleFunc("/about", handlerAbout)
 	mux.HandleFunc("/contact", handlerContact)
