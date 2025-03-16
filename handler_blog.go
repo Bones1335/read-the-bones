@@ -6,19 +6,59 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"regexp"
 	"text/template"
+	"time"
 
 	"github.com/gomarkdown/markdown"
+	"github.com/gomarkdown/markdown/parser"
+	"gopkg.in/yaml.v3"
 )
 
-func mdToHTML(mdFilePath string) string {
-	mdFile, err := os.ReadFile(mdFilePath)
+type PostMetaData struct {
+	Title      string    `yaml:"title"`
+	Date       time.Time `yaml:"date"`
+	URL        string    `yaml:"url"`
+	Categories []string  `yaml:"categories"`
+	Tags       []string  `yaml:"tags"`
+	Content    string
+}
+
+func parseMarkdown(mdFilePath string) (PostMetaData, error) {
+	mdFileData, err := os.ReadFile(mdFilePath)
 	if err != nil {
-		fmt.Printf("error reading markdown file: %v", err)
-		return ""
+		fmt.Printf("error reading markdown file: %v\n", err)
+		return PostMetaData{}, err
 	}
 
-	html := markdown.ToHTML(mdFile, nil, nil)
+	contentStr := string(mdFileData)
+
+	re := regexp.MustCompile(`(?s)^---\n(.*?)\n---\n(.*)`)
+	matches := re.FindStringSubmatch(contentStr)
+
+	var metaData PostMetaData
+	var markdownBody string
+
+	if len(matches) == 3 {
+		err := yaml.Unmarshal([]byte(matches[1]), &metaData)
+		if err != nil {
+			return PostMetaData{}, fmt.Errorf("error parsing YAML: %w", err)
+		}
+		markdownBody = matches[2]
+	} else {
+		markdownBody = contentStr
+	}
+
+	metaData.Content = mdToHTML(markdownBody)
+
+	return metaData, nil
+}
+
+func mdToHTML(mdFile string) string {
+	extensions := parser.CommonExtensions | parser.HardLineBreak
+	p := parser.NewWithExtensions(extensions)
+
+	html := markdown.ToHTML([]byte(mdFile), p, nil)
 
 	return string(html)
 }
@@ -48,14 +88,20 @@ func handlerGetPost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	md := mdToHTML(postDirectory + "/index.md")
+	metaData, err := parseMarkdown(postDirectory + "/index.md")
+	if err != nil {
+		fmt.Printf("Error parsing Markdown: %v\n", err)
+		return
+	}
+
+	fmt.Printf("Title: %v\nTags: %v\n", metaData.Title, metaData.Tags)
 
 	temp, err := template.ParseFiles("templates/layout.html", "templates/posts.html")
 	if err != nil {
 		fmt.Printf("error parsing posts template: %v\n", err)
 	}
 
-	err = temp.Execute(w, md)
+	err = temp.Execute(w, metaData)
 	if err != nil {
 		fmt.Printf("error executing template data: %v\n", err)
 		return

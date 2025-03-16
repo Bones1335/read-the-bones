@@ -1,5 +1,12 @@
 {{ define "body"}}
 
-    {{ . }}
+    <h1>{{ .Title }}</h1>
+    <h4>{{ (.Date).UTC.Format "Mon 02 Jan 2006" }}</h4>
+
+    <div>
+        {{ .Content }}
+    </div>
+
+    <br>
 
 {{ end }}
