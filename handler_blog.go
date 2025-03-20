@@ -64,13 +64,13 @@ func mdToHTML(mdFile string) string {
 }
 
 func handlerBlog(w http.ResponseWriter, r *http.Request) {
-	metaData, err := parseMarkdown("content/connemara_Mathieu_Nicolas.md")
+	metaData, err := parseMarkdown("content/posts/2025/reacher-temporarily-solved-my-rut/index.md")
 	if err != nil {
 		fmt.Printf("error parsing markdown data: %v", err)
 		return
 	}
 
-	md := mdToHTML(metaData.Title)
+	md := postContainer(metaData)
 
 	temp, err := template.ParseFiles("templates/layout.html", "templates/blog.html")
 	if err != nil {
@@ -140,4 +140,14 @@ func findPostDirectory(postTitle string) (string, error) {
 	}
 
 	return postDir, nil
+}
+
+func postContainer(metaData PostMetaData) string {
+	title := mdToHTML(metaData.Title)
+	
+	date := mdToHTML(metaData.Date.Format("2006-02-25"))
+
+	containerDiv := fmt.Sprintf("<div class=\"blog-post-card\">%v%v</div>", title, date)
+
+	return containerDiv
 }
