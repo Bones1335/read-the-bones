@@ -64,7 +64,13 @@ func mdToHTML(mdFile string) string {
 }
 
 func handlerBlog(w http.ResponseWriter, r *http.Request) {
-	md := mdToHTML("content/connemara_Mathieu_Nicolas.md")
+	metaData, err := parseMarkdown("content/connemara_Mathieu_Nicolas.md")
+	if err != nil {
+		fmt.Printf("error parsing markdown data: %v", err)
+		return
+	}
+
+	md := mdToHTML(metaData.Title)
 
 	temp, err := template.ParseFiles("templates/layout.html", "templates/blog.html")
 	if err != nil {
