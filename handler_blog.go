@@ -64,14 +64,30 @@ func mdToHTML(mdFile string) string {
 }
 
 func handlerBlog(w http.ResponseWriter, r *http.Request) {
-	var posts []PostMetaData
-	metaData, err := parseMarkdown("content/posts/2025/reacher-temporarily-solved-my-rut/index.md")
+	directories, err := getDirectoryNames("content/posts")
 	if err != nil {
-		fmt.Printf("error parsing markdown data: %v", err)
+		fmt.Printf("error getting directory names: %v", err)
 		return
 	}
 
-	posts = append(posts, metaData)
+	var posts []PostMetaData
+
+	for _, dir := range directories {
+		fmt.Printf("dir: %v\n", dir)
+
+		path := fmt.Sprintf("%v/index.md", dir)
+		_, err := os.Open(path)
+		if os.IsNotExist(err) {
+			continue
+		}
+
+		metaData, err := parseMarkdown(path)
+		if err != nil {
+			fmt.Printf("error parsing markdown data: %v", err)
+			return
+		}
+		posts = append(posts, metaData)
+	}
 
 	temp, err := template.ParseFiles("templates/layout.html", "templates/blog.html")
 	if err != nil {
@@ -139,4 +155,27 @@ func findPostDirectory(postTitle string) (string, error) {
 	}
 
 	return postDir, nil
+}
+
+func getDirectoryNames(postsDir string) ([]string, error) {
+	var dirMap []string
+
+	err := filepath.WalkDir(postsDir, func(path string, d os.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+
+		if d.IsDir() {
+			dirMap = append(dirMap, path)
+		}
+
+		return nil
+	})
+
+	if err != nil {
+		return nil, err
+	}
+
+	return dirMap, nil
+
 }
