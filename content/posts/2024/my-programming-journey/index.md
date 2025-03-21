@@ -1,7 +1,7 @@
 ---
 title: 'My Programming Journey'
 date: 2024-02-25T07:33:31+01:00
-url: /my-programming-journey/
+url: /my-programming-journey
 categories:
     - Tech
     - Learning

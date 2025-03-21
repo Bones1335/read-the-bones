@@ -1,7 +1,7 @@
 ---
 title: 'Just Do the Thing: Consistency'
 date: 2024-02-28T18:16:18+01:00
-url: /just-do-the-thing-consistency/
+url: /just-do-the-thing-consistency
 categories:
     - Language Learning
     - Self-improvement

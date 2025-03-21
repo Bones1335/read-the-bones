@@ -64,13 +64,14 @@ func mdToHTML(mdFile string) string {
 }
 
 func handlerBlog(w http.ResponseWriter, r *http.Request) {
+	var posts []PostMetaData
 	metaData, err := parseMarkdown("content/posts/2025/reacher-temporarily-solved-my-rut/index.md")
 	if err != nil {
 		fmt.Printf("error parsing markdown data: %v", err)
 		return
 	}
 
-	md := postContainer(metaData)
+	posts = append(posts, metaData)
 
 	temp, err := template.ParseFiles("templates/layout.html", "templates/blog.html")
 	if err != nil {
@@ -78,7 +79,7 @@ func handlerBlog(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = temp.Execute(w, md)
+	err = temp.Execute(w, posts)
 	if err != nil {
 		fmt.Printf("error executing template data: %v\n", err)
 		return
@@ -99,8 +100,6 @@ func handlerGetPost(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("Error parsing Markdown: %v\n", err)
 		return
 	}
-
-	fmt.Printf("Title: %v\nTags: %v\n", metaData.Title, metaData.Tags)
 
 	temp, err := template.ParseFiles("templates/layout.html", "templates/posts.html")
 	if err != nil {
@@ -140,14 +139,4 @@ func findPostDirectory(postTitle string) (string, error) {
 	}
 
 	return postDir, nil
-}
-
-func postContainer(metaData PostMetaData) string {
-	title := mdToHTML(metaData.Title)
-	
-	date := mdToHTML(metaData.Date.Format("2006-02-25"))
-
-	containerDiv := fmt.Sprintf("<div class=\"blog-post-card\">%v%v</div>", title, date)
-
-	return containerDiv
 }
