@@ -57,7 +57,23 @@
         </div>
     </div>
 
-    {{ . }}
+    {{ range . }}
+     <div class="blog-post-card">
+        <img src="/static/images/05.jpg" alt="05" style="width:300px;height:150px">
+        <div class="card-text">
+            <a href="/blog{{ .URL }}"><h1>{{ .Title }}</h1></a>
+            <h3>This is the sub-heading for Blog Post #5</h3>
+            <div class="date-tags">
+                <p>{{ .Date.Format "2006/01/06" }}</p>
+                {{ range .Tags }}
+                    <a href="#">{{ . }}</a>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+
+       
+    {{ end }}
 </div>
 
-{{end}}
+{{ end }}

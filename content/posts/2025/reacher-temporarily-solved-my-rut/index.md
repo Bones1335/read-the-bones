@@ -1,7 +1,7 @@
 ---
 title: 'Reacher Temporarily Solved My Rut'
-date: 2025-03-16
-url: /reacher-temporarily-solved-my-rut/
+date: 2025-03-16T13:44:21+01:00
+url: /reacher-temporarily-solved-my-rut
 categories:
     - English
 tags:

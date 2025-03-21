@@ -1,7 +1,7 @@
 ---
 title: 'Fitness and Nutrition Are Not That Complicated'
 date: 2024-02-21T06:42:29+01:00
-url: /fitness-and-nutrition-are-not-that-complicated/
+url: /fitness-and-nutrition-are-not-that-complicated
 categories:
     - Health
 tags:

@@ -1,7 +1,7 @@
 ---
 title: 'Enjoy the Journey to the Destination'
-date: 2024-03-26T07:29:33+01:00
-url: /enjoy-the-journey-to-the-destination/
+date: 2024-03-26
+url: /enjoy-the-journey-to-the-destination
 categories:
     - Language Learning
     - Tech
