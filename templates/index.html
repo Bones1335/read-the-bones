@@ -3,8 +3,8 @@
     <div id="blog-container">
         <div id="latest-post">
             <img src="/static/images/01.jpg" width="300" height="200">
-            <h1>This is the Blog page latest post.</h1>
-            <p>25/02/2024</p>
+            <a href="/blog{{ (index . 0).URL }}"><h1>{{ (index . 0).Title }}</h1></a>
+            <p>{{ (index . 0).Date.Format "2006/01/06" }}</p>
         </div>
         
         <div id="popular-posts">
@@ -37,28 +37,28 @@
             <ul>
                 <li>
                     <img src="/static/images/02.jpg" style="width:10rem;height:5rem;">
-                    <h3>Post 1</h3>
-                    <p>24/02/2024</p>
+                    <a href="/blog{{ (index . 1).URL }}"><h3>{{ (index . 1).Title }}</h3></a>
+                    <p>{{ (index . 1).Date.Format "2006/01/06" }}</p>
                 </li>
                 <li>
                     <img src="/static/images/03.jpg" style="width:10rem;height:5rem;">
-                    <h3>Post 2</h3>
-                    <p>20/02/2024</p>
+                    <a href="/blog{{ (index . 2).URL }}"><h3>{{ (index . 2).Title }}</h3></a>
+                    <p>{{ (index . 2).Date.Format "2006/01/06" }}</p>
                 </li>
                 <li>
                     <img src="/static/images/04.jpg" style="width:10rem;height:5rem;">
-                    <h3>Post 3</h3>
-                    <p>18/02/2024</p>
+                    <a href="/blog{{ (index . 3).URL }}"><h3>{{ (index . 3).Title }}</h3></a>
+                    <p>{{ (index . 3).Date.Format "2006/01/06" }}</p>
                 </li>
                 <li>
                     <img src="/static/images/05.jpg" style="width:10rem;height:5rem;">
-                    <h3>Post 4</h3>
-                    <p>16/02/2024</p>
+                    <a href="/blog{{ (index . 4).URL }}"><h3>{{ (index . 4).Title }}</h3></a>
+                    <p>{{ (index . 4).Date.Format "2006/01/06" }}</p>
                 </li>
                 <li>
                     <img src="/static/images/06.jpg" style="width:10rem;height:5rem;">
-                    <h3>Post 5</h3>
-                    <p>14/02/2024</p>
+                    <a href="/blog{{ (index . 5).URL }}"><h3>{{ (index . 5).Title }}</h3></a>
+                    <p>{{ (index . 5).Date.Format "2006/01/06" }}</p>
                 </li>
             </ul>
         </div>

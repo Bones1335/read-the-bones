@@ -7,6 +7,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"sort"
 	"text/template"
 	"time"
 
@@ -73,8 +74,6 @@ func handlerBlog(w http.ResponseWriter, r *http.Request) {
 	var posts []PostMetaData
 
 	for _, dir := range directories {
-		fmt.Printf("dir: %v\n", dir)
-
 		path := fmt.Sprintf("%v/index.md", dir)
 		_, err := os.Open(path)
 		if os.IsNotExist(err) {
@@ -88,6 +87,10 @@ func handlerBlog(w http.ResponseWriter, r *http.Request) {
 		}
 		posts = append(posts, metaData)
 	}
+
+	sort.Slice(posts, func(i, j int) bool {
+		return posts[i].Date.After(posts[j].Date)
+	})
 
 	temp, err := template.ParseFiles("templates/layout.html", "templates/blog.html")
 	if err != nil {
