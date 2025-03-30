@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+    app:
+      build: .
+      container_name: read-the-bones
+      ports:
+          - "8080:8080"
+    caddy:
+      image: caddy:latest
+      container_name: caddy
+      ports:
+          - "80:80"
+          - "443:443"
+      volumes:
+          - ./Caddyfile:/etc/caddy/Caddyfile
+      depends_on:
+          - app
