@@ -65,9 +65,11 @@
             <h3>This is the sub-heading for Blog Post #5</h3>
             <div class="date-tags">
                 <p>{{ .Date.Format "2006/01/06" }}</p>
+                <div class="blog-post-tags">
                 {{ range .Tags }}
                     <a href="#">{{ . }}</a>
                 {{ end }}
+                </div>
             </div>
         </div>
     </div>

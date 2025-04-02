@@ -7,7 +7,7 @@ categories:
 tags:
     - Health
     - Mental Health
-    - Personal Development
+    - Self-improvement
     - Programming
     - Tech
 draft: true

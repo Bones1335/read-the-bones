@@ -3,11 +3,10 @@ title: 'Everyone Should Be Tech Literate'
 date: 2024-02-22T06:44:38+01:00
 url: /everyone-should-be-tech-literate
 categories:
-    - Tech
+    - English
 tags:
     - Linux
-    - Windows
-    - Mac
+    - Tech
     - Literacy
 draft: true
 ---

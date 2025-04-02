@@ -3,11 +3,11 @@ title: 'Enjoy the Journey to the Destination'
 date: 2024-03-26
 url: /enjoy-the-journey-to-the-destination
 categories:
-    - Language Learning
-    - Tech
+    - English
 tags:
     - Linux
-    - French
+    - Language Learning
+    - Tech
 draft: true
 ---
 SUMMARY HERE

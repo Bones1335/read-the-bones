@@ -3,14 +3,13 @@ title: 'My Programming Journey'
 date: 2024-02-25T07:33:31+01:00
 url: /my-programming-journey
 categories:
-    - Tech
-    - Learning
+    - English
 tags:
     - Linux
     - Programming
-    - Arch
     - France
     - Learning
+    - Tech
 draft: true
 ---
 My journey with programming from where I started to where I am at the moment. (I still suck)

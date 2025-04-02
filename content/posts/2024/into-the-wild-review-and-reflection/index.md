@@ -3,11 +3,11 @@ title: 'Into the Wild Reflection'
 date: 2024-03-24T07:19:03+01:00
 url: /into-the-wild-review-and-reflection
 categories:
-    - Reading
+    - English
 tags:
     - Non-fiction
-    - French
     - Self-improvement
+    - Reading
 draft: true
 ---
 A call to adventure worth reading.

@@ -119,6 +119,10 @@ main {
     gap: 30px;
 }
 
+.blog-post-tags a {
+    text-decoration: none;
+}
+
 footer {
     background-color: var(--hdr-ftr-background-color);
     color: var(--hdr-ftr-text-color);

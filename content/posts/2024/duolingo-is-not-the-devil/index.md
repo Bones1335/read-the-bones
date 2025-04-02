@@ -3,10 +3,9 @@ title: 'Duolingo is not the devil'
 date: 2024-02-15T19:03:03+01:00
 url: /duolingo-is-not-the-devil
 categories:
-    - Language Learning
+    - English
 tags:
-    - Italian 
-    - Duolingo
+    - Language Learning 
 ---
 Duolingo will help you more than you think.
 <!--more-->
