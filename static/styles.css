@@ -9,6 +9,10 @@ body {
     padding: 0;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
 #page-container {
     position: relative;
     min-height: 100vh;

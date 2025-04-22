@@ -1,63 +1,9 @@
 {{ define "body" }}
 
 <div id="blog-list">
-    <div class="blog-post-card">
-        <img src="/static/images/01.jpg" alt="01" style="width:300px;height:150px">
-        <div class="card-text">
-            <h1>Blog Post #1</h1>
-            <h3>This is the sub-heading for Blog Post #1</h3>
-            <div class="date-tags">
-                <p>10/01/2024</p>
-                <a href="#">Tag 1</a>
-            </div>
-        </div>
-    </div>
-    <div class="blog-post-card">
-        <img src="/static/images/02.jpg" alt="02" style="width:300px;height:150px">
-        <div class="card-text">
-            <h1>Blog Post #2</h1>
-            <h3>This is the sub-heading for Blog Post #2</h3>
-            <div class="date-tags">
-                <p>10/01/2024</p>
-                <a href="#">Tag 2</a>
-            </div>
-        </div>
-    </div>
-    <div class="blog-post-card">
-        <img src="/static/images/03.jpg" alt="03" style="width:300px;height:150px">
-        <div class="card-text">
-            <h1>Blog Post #3</h1>
-            <h3>This is the sub-heading for Blog Post #3</h3>
-            <div class="date-tags">
-                <p>10/01/2024</p>
-                <a href="#">Tag 3</a>
-            </div>
-        </div>
-    </div>
-    <div class="blog-post-card">
-        <img src="/static/images/04.jpg" alt="04" style="width:300px;height:150px">
-        <div class="card-text">
-            <h1>Blog Post #4</h1>
-            <h3>This is the sub-heading for Blog Post #4</h3>
-            <div class="date-tags">
-                <p>10/01/2024</p>
-                <a href="#">Tag 2</a>
-            </div>
-        </div>
-    </div>
-    <div class="blog-post-card">
-        <img src="/static/images/05.jpg" alt="05" style="width:300px;height:150px">
-        <div class="card-text">
-            <h1>Blog Post #5</h1>
-            <h3>This is the sub-heading for Blog Post #5</h3>
-            <div class="date-tags">
-                <p>10/01/2024</p>
-                <a href="#">Tag 2</a>
-            </div>
-        </div>
-    </div>
 
     {{ range . }}
+
      <div class="blog-post-card">
         <img src="/static/images/05.jpg" alt="05" style="width:300px;height:150px">
         <div class="card-text">
@@ -73,7 +19,6 @@
             </div>
         </div>
     </div>
-
        
     {{ end }}
 </div>
