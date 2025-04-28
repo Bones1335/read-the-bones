@@ -56,7 +56,7 @@ func parseMarkdown(mdFilePath string) (PostMetaData, error) {
 }
 
 func mdToHTML(mdFile string) string {
-	extensions := parser.CommonExtensions | parser.HardLineBreak
+	extensions := parser.CommonExtensions | parser.HardLineBreak | parser.Footnotes
 	p := parser.NewWithExtensions(extensions)
 
 	html := markdown.ToHTML([]byte(mdFile), p, nil)
