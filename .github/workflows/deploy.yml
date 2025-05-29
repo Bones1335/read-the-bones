@@ -20,10 +20,11 @@ jobs:
         with:
           host: ${{ secrets.HETZNER_IP }}
           username: ${{ secrets.HETZNER_USERNAME }}
-          key: ${{ secrets.HETZNER_SSH_KEY }}
+          ssh-private-key: ${{ secrets.HETZNER_SSH_KEY }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           port: 22
           script: |
+            ssh -o StrictHostKeyChecking=no ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_SSH_KEY }} << 'EOF'
             cd programs/read-the-bones
             git pull origin main
             docker-compose down
